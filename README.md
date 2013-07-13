@@ -15,3 +15,21 @@ Love,
 Lucas, Edward, and John
 
 *Note:* The project name is still a work in progress. If you'd like to suggest something better, we're all ears. :smile:
+
+## Team
+
+**Lucas Cherkewski**
+
++ <https://twitter.com/lchski>
++ <https://github.com/asdfgh746>
+
+**Edward Lu**
+
++ <https://twitter.com/eddywerdy>
++ <https://github.com/werdyl>
+
+**John Fish**
+
++ <https://twitter.com/thejohnfish>
++ <https://github.com/johnafish>
+
