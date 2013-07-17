@@ -7,23 +7,39 @@
 
 <% Schedule.all.each do |schedule| %>
 <% if schedule.belongs_to_user == current_user.id %>
-<div>
-	<% Day.all.each do |day| %>
+<div class="row">
+	<div class="span12">
+		<% Day.all.each do |day| %>
 		<% if day.belongs_to_schedule == schedule.id %>
-			<div>
-				Day <%= day.number %>
-				<% ClassyClass.all.each do |classy| %>
-					<% if classy.belongs_to_day == day.id %>
-						<p>
-						<li><u>Class:</u> <%= classy.name %></li>
-						<li><u>Teacher:</u> <%= classy.teacher %></li>
-						<li><u>Duration:</u> <%= classy.duration %> minutes</li>
-						</p>
+				<table class="table table-striped">
+					<h2>Day <%= day.number %></h2>
+					<thead>
+						<tr>
+							<th>Period</th>
+							<th>Class</th>
+							<th>Teacher</th>
+							<th>Duration</th>
+						</tr>
+					</thead>
+					<tbody>
+					<% @counter = 1 %>
+					<% ClassyClass.all.each do |classy| %>
+						<% if classy.belongs_to_day == day.id %>
+							<tr>
+								<td><%= @counter %></td>
+								<td><%= classy.name %></td>
+								<td><%= classy.teacher %></td>
+								<td><%= classy.duration %><td>
+							</tr>
+							<% @counter = @counter + 1 %>
+						<% end %>
 					<% end %>
-				<% end %>
-			</div>
+				</div>
 		<% end %>
-	<% end %>
+		<% end %>
+			</tbody>
+		</table>
+	</div>
 </div>
 <% end %>
 <% end %>
