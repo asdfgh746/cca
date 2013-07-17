@@ -6,15 +6,16 @@ class UsersController < ApplicationController
 
 	def new
 		@user = User.new
-		
-		@schedule = Schedule.new
-		@schedule.belongs_to_user = @user.id
-		@schedule.save
 	end
 
 	def create
 		@user = User.new(params[:user])
-			if @user.save
+
+		if @user.save
+			@schedule = Schedule.new
+			@schedule.belongs_to_user = @user.id
+			@schedule.save
+	  		
 	  		sign_in @user
 	  		flash[:success] = "Welcome to the Sample App!"
 	  		redirect_to @user
