@@ -50,10 +50,13 @@ ClassyClassApp::Application.routes.draw do
   # just remember to delete public/index.html.
   
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 
   root :to => 'static_pages#home'
 
   match '/signup', to: 'users#new', via: 'get'
+  match '/signin', to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: :delete
 
   # See how all your routes lay out with "rake routes"
 
