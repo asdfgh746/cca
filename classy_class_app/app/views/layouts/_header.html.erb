@@ -1,6 +1,7 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
+<<<<<<< HEAD
       <%= link_to "Classy Class App", root_path, class: "logo" %>
       <ul class="nav pull-right">
         <li><%= link_to "Home", root_path %></li>
@@ -10,6 +11,20 @@
           <li><%= link_to "Sign in", signin_path %></li>
         <% end %>
       </ul>
+=======
+      <%= link_to "sample app", root_path, id: "logo" %>
+      <nav>
+        <ul class="nav pull-right">
+          <li><%= link_to "Home", root_path %></li>
+          <% if signed_in? %>
+            <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+            <li><%= link_to "My Schedule", my_schedule_path %></li>
+          <% else %>
+            <li><%= link_to "Sign in", signin_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+>>>>>>> a4b88f9ea2f0062461cf4df79b63f935b024ed19
     </div>
   </div>
 </header>

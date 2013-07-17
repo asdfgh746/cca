@@ -58,6 +58,8 @@ ClassyClassApp::Application.routes.draw do
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy',     via: :delete
 
+  match '/my_schedule', to: 'schedules#show', via: 'get'
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
