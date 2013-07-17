@@ -6,6 +6,10 @@ class UsersController < ApplicationController
 
 	def new
 		@user = User.new
+		
+		@schedule = Schedule.new
+		@schedule.belongs_to_user = @user.id
+		@schedule.save
 	end
 
 	def create
