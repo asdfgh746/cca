@@ -5,21 +5,25 @@
   <%= @user.name %>
 </h1>
 
-<% @schedule = Schedule.find_by_id(1)%>
-	
+<% Schedule.all.each do |schedule| %>
+<% if schedule.belongs_to_user == current_user.id %>
 <div>
 	<% Day.all.each do |day| %>
-		<% if day.belongs_to_schedule == @schedule.id %>
+		<% if day.belongs_to_schedule == schedule.id %>
 			<div>
 				Day <%= day.number %>
 				<% ClassyClass.all.each do |classy| %>
 					<% if classy.belongs_to_day == day.id %>
+						<p>
 						<li><u>Class:</u> <%= classy.name %></li>
 						<li><u>Teacher:</u> <%= classy.teacher %></li>
 						<li><u>Duration:</u> <%= classy.duration %> minutes</li>
+						</p>
 					<% end %>
 				<% end %>
 			</div>
 		<% end %>
 	<% end %>
 </div>
+<% end %>
+<% end %>
