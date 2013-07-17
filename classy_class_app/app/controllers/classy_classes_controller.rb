@@ -1,0 +1,2 @@
+class ClassyClassesController < ApplicationController
+end
