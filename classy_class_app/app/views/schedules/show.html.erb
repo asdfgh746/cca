@@ -19,7 +19,7 @@
 			<tbody>
 			<% @counter = 1 %>
 			<% ClassyClass.all.each do |classy| %>
-				<% if classy.belongs_to_day == day.id && classy.belongs_to_user == current_user.id%>
+				<% if classy.belongs_to_day == day.id %>
 					<tr>
 						<td><%= @counter %></td>
 						<td><%= classy.name %></td>
