@@ -1,5 +1,25 @@
 <% provide(:title, @user.name) %>
+
 <h1>
   <% #gravatar_for @user %>
   <%= @user.name %>
 </h1>
+
+<% @schedule = Schedule.find_by_id(1)%>
+	
+<div>
+	<% Day.all.each do |day| %>
+		<% if day.belongs_to_schedule == @schedule.id %>
+			<div>
+				Day <%= day.number %>
+				<% ClassyClass.all.each do |classy| %>
+					<% if classy.belongs_to_day == day.id %>
+						<li><u>Class:</u> <%= classy.name %></li>
+						<li><u>Teacher:</u> <%= classy.teacher %></li>
+						<li><u>Duration:</u> <%= classy.duration %> minutes</li>
+					<% end %>
+				<% end %>
+			</div>
+		<% end %>
+	<% end %>
+</div>

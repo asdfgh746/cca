@@ -1,5 +1,5 @@
 class ClassyClass < ActiveRecord::Base
-  attr_accessible :name, :teacher, :duration
+  attr_accessible :name, :teacher, :duration, :belongs_to_day
   belongs_to :day
 
   validates :name, presence: true
