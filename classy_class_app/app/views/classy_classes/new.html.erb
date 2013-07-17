@@ -10,8 +10,12 @@
   <%= f.label :duration %>
   <%= f.text_field :duration %>
 
-  <%= f.label :belongs_to_day %>
-  <%= f.text_field :belongs_to_day %>
+  	<% if @schedule = Schedule.where(belongs_to_user: current_user.id).first %>
+	<% @days = Day.where(belongs_to_schedule: @schedule.id) %>
+	
+		<%= collection_select(:classy_class, :belongs_to_day, @days, :id, :number) %>
+
+	<% end %>
 
   <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 <% end %>
