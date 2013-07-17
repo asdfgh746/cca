@@ -49,7 +49,11 @@ ClassyClassApp::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   
+  resources :users
+
   root :to => 'static_pages#home'
+
+  match '/signup', to: 'users#new', via: 'get'
 
   # See how all your routes lay out with "rake routes"
 
