@@ -8,9 +8,9 @@
 <% Schedule.all.each do |schedule| %>
 <% if schedule.belongs_to_user == current_user.id %>
 <div class="row">
-	<div class="span12">
 		<% Day.all.each do |day| %>
 		<% if day.belongs_to_schedule == schedule.id %>
+			<div class="span6">
 				<table class="table table-striped">
 					<h2>Day <%= day.number %></h2>
 					<thead>
@@ -34,12 +34,11 @@
 							<% @counter = @counter + 1 %>
 						<% end %>
 					<% end %>
+						</tbody>
+					</table>
 				</div>
 		<% end %>
 		<% end %>
-			</tbody>
-		</table>
-	</div>
 </div>
 <% end %>
 <% end %>
