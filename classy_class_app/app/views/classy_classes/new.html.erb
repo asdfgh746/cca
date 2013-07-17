@@ -1,0 +1,17 @@
+
+<%= form_for :classy_class, url: create_class_path do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :teacher %>
+  <%= f.text_field :teacher %>
+
+  <%= f.label :duration %>
+  <%= f.text_field :duration %>
+
+  <%= f.label :belongs_to_day %>
+  <%= f.text_field :belongs_to_day %>
+
+  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+<% end %>

@@ -58,6 +58,11 @@ ClassyClassApp::Application.routes.draw do
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy',     via: :delete
 
+  match '/create_new', to: 'classy_classes#new', as: :create_new
+
+  match '/create_schedule', to: "schedules#create", via: 'post'
+  match '/create_class', to: "classy_classes#create", via: 'post'
+
   match '/my_schedule', to: 'schedules#show', via: 'get'
 
   # See how all your routes lay out with "rake routes"

@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 		if @user.save
 			@schedule = Schedule.new
 			@schedule.belongs_to_user = @user.id
-			@schedule.save
+			@schedule.save(validate: false)
 	  		
 	  		sign_in @user
 	  		flash[:success] = "Welcome to the Sample App!"
