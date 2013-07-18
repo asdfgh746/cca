@@ -4,6 +4,7 @@
 <% @has_schedule = true %>
 <div class="row">
 <% @days = Day.where(belongs_to_schedule: @schedule.id) %>
+<% @day_counter = 1 %>
 <% @days.each do |day| %>
 	<div class="span6">
 		<table class="table table-striped">
@@ -17,21 +18,26 @@
 				</tr>
 			</thead>
 			<tbody>
-			<% @counter = 1 %>
+			<% @classy_counter = 1 %>
 			<% ClassyClass.all.each do |classy| %>
 				<% if classy.belongs_to_day == day.id %>
 				<tr>
-					<td><%= @counter %></td>
+					<td><%= @classy_counter %></td>
 					<td><%= classy.name %></td>
 					<td><%= classy.teacher %></td>
 					<td><%= classy.duration %><td>
 				</tr>
-				<% @counter = @counter + 1 %>
+				<% @classy_counter += 1 %>
 				<% end %>
 			<% end %>
 			</tbody>
 		</table>
 	</div>
+<% if @day_counter % 2 == 0 %>
+</div>
+<div class="row">
+<% end %>
+<% @day_counter += 1 %>
 <% end %>
 </div>
 <% end %>
