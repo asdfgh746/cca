@@ -1,10 +1,10 @@
 <% @has_schedule = false %>
 
+<% if @schedule = Schedule.where(belongs_to_user: current_user.id).first %>
+<% @has_schedule = true %>
 <div class="row">
-	<% if @schedule = Schedule.where(belongs_to_user: current_user.id).first %>
-	<% @has_schedule = true %>
-	<% @days = Day.where(belongs_to_schedule: @schedule.id) %>
-	<% @days.each do |day| %>
+<% @days = Day.where(belongs_to_schedule: @schedule.id) %>
+<% @days.each do |day| %>
 	<div class="span6">
 		<table class="table table-striped">
 			<h2>Day <%= day.number %></h2>
@@ -20,21 +20,21 @@
 			<% @counter = 1 %>
 			<% ClassyClass.all.each do |classy| %>
 				<% if classy.belongs_to_day == day.id %>
-					<tr>
-						<td><%= @counter %></td>
-						<td><%= classy.name %></td>
-						<td><%= classy.teacher %></td>
-						<td><%= classy.duration %><td>
-					</tr>
-					<% @counter = @counter + 1 %>
+				<tr>
+					<td><%= @counter %></td>
+					<td><%= classy.name %></td>
+					<td><%= classy.teacher %></td>
+					<td><%= classy.duration %><td>
+				</tr>
+				<% @counter = @counter + 1 %>
 				<% end %>
 			<% end %>
-				</tbody>
-			</table>
-		</div>
-	<% end %>
-	<% end %>
+			</tbody>
+		</table>
+	</div>
+<% end %>
 </div>
+<% end %>
 
 <% if @has_schedule == false %>
 
