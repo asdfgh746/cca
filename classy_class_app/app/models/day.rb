@@ -4,6 +4,6 @@ class Day < ActiveRecord::Base
   validates :number, presence: true
   validates :number_of_classes, presence: true
   
-  has_many :classy_class
+  has_and_belongs_to_many :classy_class
   belongs_to :schedule
 end

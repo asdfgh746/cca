@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130717224332) do
+ActiveRecord::Schema.define(:version => 20130820161859) do
 
   create_table "classy_classes", :force => true do |t|
     t.string   "name"
@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(:version => 20130717224332) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.integer  "belongs_to_schedule"
+  end
+
+  create_table "days_classy_classes", :force => true do |t|
+    t.integer "day_id"
+    t.integer "classy_class_id"
   end
 
   create_table "schedules", :force => true do |t|
