@@ -15,15 +15,22 @@
     <% @days = Day.where(belongs_to_schedule: @schedule.id) %>
 
     <% @blocks = [] %>
-
+    
+    <% @ok = false %>
     <% @days.each do |day| %>
-      <% @blocks_for_day = day.order_of_blocks.split(",").collect %>
-
-      <% @blocks_for_day.each do |block| %>
-        <% @blocks << block %>
-      <% end %> 
+      <% if day.order_of_blocks %>
+        <% @blocks_for_day = day.order_of_blocks.split(",").collect %>
+        <% @ok = true %>
+        <% @blocks_for_day.each do |block| %>
+          <% @blocks << block %>
+        <% end %> 
+      <% end %>
     <% end %>
-  
+    
+    <% if @ok == false %>
+      <% @blocks = ["A", "B", "C", "D", "E"] %>
+    <% end %>
+
     <% @blocks = @blocks.uniq %>
     <% @blocks.sort_by!{ |m| m } %>
 
