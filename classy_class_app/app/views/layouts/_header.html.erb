@@ -9,9 +9,9 @@
           <li><%= link_to "Add Class", create_new_path %></li>
           <% end %>
           <li><%= link_to "My Schedule", my_schedule_path %></li>
-          <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+          <li><%= link_to "Sign out", sign_out_path, method: "delete" %></li>
         <% else %>
-          <li><%= link_to "Sign in", signin_path %></li>
+          <li><%= link_to "Sign in", sign_in_path %></li>
         <% end %>
       </ul>
     </div>
