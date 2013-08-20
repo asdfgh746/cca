@@ -5,10 +5,7 @@ class ClassyClassesController < ApplicationController
 	end
 
 	def create
-		@classy = ClassyClass.new(params[:classy_class])
-		@classy.save
-
-		
+		@classy = ClassyClass.create(params[:classy_class])
 
 		flash[:success] = "Schedule updated!"
 		redirect_to root_path

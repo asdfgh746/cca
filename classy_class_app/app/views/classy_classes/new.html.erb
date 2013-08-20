@@ -11,8 +11,8 @@
   <%= f.text_field :duration %>
 
 	<% if @schedule = Schedule.where(belongs_to_user: current_user.id).first %>
-	<% @days = Day.where(belongs_to_schedule: @schedule.id) %>
-	
+    
+    <% @days = Day.where(belongs_to_schedule: @schedule.id) %>
     <%= f.label :belongs_to_day, "Day" %>
 		<%= collection_select(:classy_class, :belongs_to_day, @days, :id, :number) %>
 
