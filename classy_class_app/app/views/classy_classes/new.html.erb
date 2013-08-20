@@ -11,10 +11,30 @@
   <%= f.text_field :duration %>
 
 	<% if @schedule = Schedule.where(belongs_to_user: current_user.id).first %>
-    
+
     <% @days = Day.where(belongs_to_schedule: @schedule.id) %>
-    <%= f.label :belongs_to_day, "Day" %>
-		<%= collection_select(:classy_class, :belongs_to_day, @days, :id, :number) %>
+
+    <% @blocks = [] %>
+
+    <% @days.each do |day| %>
+      <% @blocks_for_day = day.order_of_blocks.split(",").collect %>
+
+      <% @blocks_for_day.each do |block| %>
+        <% @blocks << block %>
+      <% end %> 
+    <% end %>
+  
+    <% @blocks = @blocks.uniq %>
+    <% @blocks.sort_by!{ |m| m } %>
+
+    <% @blocks_for_form = [] %>
+    <% @blocks.each do |block| %>
+      <% @dupe = [block, block] %>
+      <% @blocks_for_form << @dupe %> 
+    <% end %>
+
+    <%= f.label :block, "Block" %>
+    <%= select_tag(:block, options_for_select(@blocks_for_form)) %>
 
 	<% end %>
 
