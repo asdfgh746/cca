@@ -55,7 +55,7 @@ ClassyClassApp::Application.routes.draw do
 
   root :to => 'static_pages#home'
 
-  match '/signup', to: 'users#new', via: 'get'
+  match '/sign_up', to: 'users#new', via: 'get'
   match '/sign_in', to: 'sessions#new', via: 'get'
   match '/sign_out', to: 'sessions#destroy',     via: :delete
 
