@@ -9,7 +9,7 @@ class ClassyClassesController < ApplicationController
 		@classy.save
 
 		flash[:success] = "Schedule updated!"
-		redirect_to root_path
+		redirect_to my_schedule_path
 	end
 
 end

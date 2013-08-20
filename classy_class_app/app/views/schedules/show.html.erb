@@ -1,3 +1,9 @@
+<% if flash[:success] %>
+<div class="alert alert-success">
+  <%= flash[:success] %>
+</div>
+<% end %>
+
 <% @has_schedule = false %>
 
 <% if @schedule = Schedule.where(belongs_to_user: current_user.id).first %>
