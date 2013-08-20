@@ -17,7 +17,7 @@ class SchedulesController < ApplicationController
 			@counter += 1
 		end
 
-		flash[:success] = "Schedule created"
+		flash[:success] = "Schedule created."
 		render 'classy_classes/new'
 	end
 end
