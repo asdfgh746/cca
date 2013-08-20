@@ -1,11 +1,5 @@
 <% provide(:title, @user.name) %>
 
-<% if flash[:success] %>
-<div class="alert alert-success">
-	<%= flash[:success] %>
-</div>
-<% end %>
-
 <h1>
   <% #gravatar_for @user %>
   <%= @user.name %>
