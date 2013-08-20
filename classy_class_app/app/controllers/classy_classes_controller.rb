@@ -8,6 +8,8 @@ class ClassyClassesController < ApplicationController
 		@classy = ClassyClass.new(params[:classy_class])
 		@classy.save
 
+		
+
 		flash[:success] = "Schedule updated!"
 		redirect_to root_path
 	end
