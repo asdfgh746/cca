@@ -34,11 +34,9 @@
 					<td><%= @num_counter + 1 %></td>
 					<td><%= @current_block %></td>
 					<% if @current_class = ClassyClass.where(block: @current_block).first %>
-						<% if @current_day = Day.find_by_id(@current_class.belongs_to_day) %>
-							<td><%= @current_class.name %></td>
-							<td><%= @current_class.teacher %></td>
-							<td><%= @current_class.duration %></td>
-						<% end %>
+						<td><%= @current_class.name %></td>
+						<td><%= @current_class.teacher %></td>
+						<td><%= @current_class.duration %></td>
 					<% end %>
 				</tr>
 
