@@ -1,3 +1,8 @@
+<% if flash[:success] %>
+<div class="alert alert-success">
+  <%= flash[:success] %>
+</div>
+<% end %>
 
 <%= form_for :classy_class, url: create_class_path do |f| %>
 
