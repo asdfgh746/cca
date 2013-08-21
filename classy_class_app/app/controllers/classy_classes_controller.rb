@@ -6,21 +6,18 @@ class ClassyClassesController < ApplicationController
 
 	def create
 
-		@cur_block = params[:classy_class]["block"]
-
-		#THIS STUFF NEEDS TO BE FIX'D
-		ClassyClass.all.each do |cc|
-			if cc.user == current_user && cc.block == @cur_block
-				cc.destroy
+		if @class_check = ClassyClass.where(belongs_to_user: current_user.id).first
+			if @class_check.block == params[:classy_class]["block"]
+				@class_check.destroy
 			end
 		end
 
 		@classy = ClassyClass.create(params[:classy_class])
-		@classy.user = current_user
+		@classy.belongs_to_user = current_user.id
 		@classy.save
 
-		flash[:success] = "Schedule updated!"
-		redirect_to root_path
+		flash[:alert] = "Schedule updated!"
+		redirect_to :back
 	end
 
 end

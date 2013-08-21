@@ -4,19 +4,17 @@ class SchedulesController < ApplicationController
 
 	def create
 		@schedule = Schedule.new(params[:schedule])
-		@schedule.user = current_user
 		@schedule.belongs_to_user = current_user.id
-		@schedule.save(validate: false)
+		@schedule.save
 
 		@counter = 1
 
 		while @counter <= @schedule.number_of_days
 			@day = Day.new
 			@day.order_of_blocks = "A,B,C,D,E"
-			@day.schedule = @schedule
 			@day.number = @counter
 			@day.belongs_to_schedule = @schedule.id
-			@day.save(validate: false)
+			@day.save
 			@counter += 1
 		end
 
