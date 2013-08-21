@@ -41,7 +41,7 @@
     <% end %>
 
     <%= f.label :block, "Block" %>
-    <%= select_tag(:block, options_for_select(@blocks_for_form)) %>
+    <%= f.select :block, options_for_select(@blocks_for_form) %>
 
 	<% end %>
 
