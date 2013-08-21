@@ -65,8 +65,6 @@ ClassyClassApp::Application.routes.draw do
 
   match '/my_schedule', to: 'schedules#show', via: 'get'
 
-  match '/edit_days', to: 'days#edit'
-
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

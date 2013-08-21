@@ -5,8 +5,6 @@ class User < ActiveRecord::Base
 
   has_one :schedule
 
-  has_many :classy_classes
-
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
