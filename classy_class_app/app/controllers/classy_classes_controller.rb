@@ -6,9 +6,9 @@ class ClassyClassesController < ApplicationController
 
 	def create
 
-		if @class_check = ClassyClass.where(belongs_to_user: current_user.id).first
-			if @class_check.block == params[:classy_class]["block"]
-				@class_check.destroy
+		ClassyClass.where(belongs_to_user: current_user.id).each do |classy|
+			if classy.block == params[:classy_class]["block"]
+				classy.destroy
 			end
 		end
 

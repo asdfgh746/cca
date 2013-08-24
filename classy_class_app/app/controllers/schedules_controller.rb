@@ -8,10 +8,11 @@ class SchedulesController < ApplicationController
 		@schedule.save
 
 		@counter = 1
+		@alphabet = [ "A","B","C","D","E","F","G","H","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z" ]
 
 		while @counter <= @schedule.number_of_days
 			@day = Day.new
-			@day.order_of_blocks = "A,B,C,D,E"
+			@day.order_of_blocks = @alphabet[0..@schedule.number_of_blocks-1].join(",")
 			@day.number = @counter
 			@day.belongs_to_schedule = @schedule.id
 			@day.save
