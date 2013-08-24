@@ -1,35 +1,54 @@
 <% @has_schedule = false %>
-
 <% if @schedule = Schedule.where(belongs_to_user: current_user.id).first %>
 <% @has_schedule = true %>
 <div class="row">
 <% @days = Day.where(belongs_to_schedule: @schedule.id) %>
+
 <% @day_counter = 1 %>
 <% @days.each do |day| %>
+	<% if day.order_of_blocks %>
+		<% @number_of_blocks = day.order_of_blocks.split(",").collect.count %>
+
+		<% @enum_data = day.order_of_blocks.split(",").collect %>
+		<% @array_data = [] %>
+		<% @enum_data.each do |enum| %>
+			<% @array_data << enum %>
+		<% end %>
+	<% else %>
+		<% @number_of_blocks = 0 %>
+	<% end %>
 	<div class="span6">
 		<table class="table table-striped">
 			<h2>Day <%= day.number %></h2>
 			<thead>
 				<tr>
 					<th>Period</th>
+					<th>Block</th>
 					<th>Class</th>
 					<th>Teacher</th>
 					<th>Duration</th>
 				</tr>
 			</thead>
 			<tbody>
-			<% @classy_counter = 1 %>
-			<% ClassyClass.all.each do |classy| %>
-				<% if classy.belongs_to_day == day.id %>
+			
+			<% @num_counter = 0 %>
+			<% while @num_counter < @number_of_blocks %>
+				<% @current_block = @array_data[@num_counter] %>
 				<tr>
-					<td><%= @classy_counter %></td>
-					<td><%= classy.name %></td>
-					<td><%= classy.teacher %></td>
-					<td><%= classy.duration %><td>
+					<td><%= @num_counter + 1 %></td>
+					<td><%= @current_block %></td>
+					<% if @current_class = ClassyClass.where(block: @current_block).first %>
+						<% if @current_class.belongs_to_user == current_user.id %>
+							<td><%= @current_class.name %></td>
+							<td><%= @current_class.teacher %></td>
+							<td><%= @current_class.duration %></td>
+						<% end %>
+					<% end %>
 				</tr>
-				<% @classy_counter += 1 %>
-				<% end %>
+
+				<% @num_counter += 1 %>
 			<% end %>
+
 			</tbody>
 		</table>
 	</div>
@@ -43,24 +62,14 @@
 <% end %>
 
 <% if @has_schedule == false %>
+	<%= form_for :schedule, url: create_schedule_path do |f| %>
 
-<%= form_for :schedule, url: create_schedule_path do |f| %>
+	  <%= f.label :number_of_days %>
+	  <%= f.text_field :number_of_days %>
 
-  <%= f.label :number_of_days %>
-  <%= f.text_field :number_of_days %>
-
-  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
-<% end %>
-
-<% end %>
-
-<<<<<<< HEAD
 	  <%= f.label :number_of_blocks %>
 	  <%= f.text_field :number_of_blocks %>
 
 	  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 	<% end %>
 <% end %>
-=======
-<% #link_to "New Schedule", create_new_path %>
->>>>>>> c27820af4adb438eaa5bd54ad21447a7eb1c3eec
