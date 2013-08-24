@@ -2,7 +2,6 @@ class Schedule < ActiveRecord::Base
   attr_accessible :number_of_days, :belongs_to_user, :number_of_blocks
   
   belongs_to :user
-  attr_accessible :number_of_days, :belongs_to_user
   has_many :days
 
   validates :number_of_days, :inclusion => 1..10
