@@ -6,7 +6,8 @@
         <li><%= link_to "Home", root_path %></li>
         <% if signed_in? %>
           <% if @schedule = Schedule.where(belongs_to_user: current_user.id).first %>
-          <li><%= link_to "Add Class", create_new_path %></li>
+            <li><%= link_to "Edit Days", edit_days_path %></li>
+            <li><%= link_to "Add Class", create_new_path %></li>
           <% end %>
           <li><%= link_to "My Schedule", my_schedule_path %></li>
           <li class="dropdown">
