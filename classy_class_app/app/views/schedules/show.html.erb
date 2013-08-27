@@ -1,11 +1,12 @@
+
 <% @has_schedule = false %>
 <% if @schedule = Schedule.where(belongs_to_user: current_user.id).first %>
 <% @has_schedule = true %>
 <div class="row">
 <% @days = Day.where(belongs_to_schedule: @schedule.id) %>
-
 <% @day_counter = 1 %>
 <% @days.each do |day| %>
+<% @start_time = Time.local(2013,"jan",1,7,15,1) %>
 	<% if day.order_of_blocks %>
 		<% @number_of_blocks = day.order_of_blocks.split(",").collect.count %>
 
@@ -24,9 +25,9 @@
 				<tr>
 					<th>Period</th>
 					<th>Block</th>
+					<th>Time</th>
 					<th>Class</th>
 					<th>Teacher</th>
-					<th>Duration</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -37,11 +38,13 @@
 				<tr>
 					<td><%= @num_counter + 1 %></td>
 					<td><%= @current_block %></td>
+
 					<% ClassyClass.where(block: @current_block).each do |current_class| %>
 						<% if current_class.belongs_to_user == current_user.id %>
+							<% @start_time += current_class.duration *  60 %>
+							<td><%= @start_time.strftime("%l:%M") %></td>
 							<td><%= current_class.name %></td>
 							<td><%= current_class.teacher %></td>
-							<td><%= current_class.duration %></td>
 						<% end %>
 					<% end %>
 				</tr>
