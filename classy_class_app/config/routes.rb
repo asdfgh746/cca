@@ -66,6 +66,8 @@ ClassyClassApp::Application.routes.draw do
 
   match '/my_schedule', to: 'schedules#show', via: 'get'
 
+  match '/my_events', to: 'events#show', via: 'get'
+
   match '/edit_days', to: 'days#edit', via: 'get'
 
   # See how all your routes lay out with "rake routes"

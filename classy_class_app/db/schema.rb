@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130824163312) do
+ActiveRecord::Schema.define(:version => 20130828172441) do
 
   create_table "classy_classes", :force => true do |t|
     t.string   "name"
@@ -24,11 +24,6 @@ ActiveRecord::Schema.define(:version => 20130824163312) do
     t.string   "block"
   end
 
-  create_table "classy_classes_days", :id => false, :force => true do |t|
-    t.integer "day_id"
-    t.integer "classy_class_id"
-  end
-
   create_table "days", :force => true do |t|
     t.integer  "number"
     t.integer  "number_of_classes"
@@ -36,6 +31,12 @@ ActiveRecord::Schema.define(:version => 20130824163312) do
     t.datetime "updated_at",          :null => false
     t.integer  "belongs_to_schedule"
     t.string   "order_of_blocks"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "date_of_event"
   end
 
   create_table "schedules", :force => true do |t|
