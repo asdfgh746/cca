@@ -66,7 +66,7 @@ ClassyClassApp::Application.routes.draw do
 
   match '/my_schedule', to: 'schedules#show', via: 'get'
 
-  match '/my_events', to: 'events#show', via: 'get'
+  match '/my_events', to: 'events#index', via: 'get'
 
   match '/edit_days', to: 'days#edit', via: 'get'
 
