@@ -51,6 +51,7 @@ ClassyClassApp::Application.routes.draw do
   
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :days
 
   root :to => 'static_pages#home'
 
@@ -64,6 +65,8 @@ ClassyClassApp::Application.routes.draw do
   match '/create_class', to: "classy_classes#create", via: 'post'
 
   match '/my_schedule', to: 'schedules#show', via: 'get'
+
+  match '/edit_days', to: 'days#edit', via: 'get'
 
   # See how all your routes lay out with "rake routes"
 
