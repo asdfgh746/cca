@@ -8,9 +8,9 @@
 	  <%= calendar.head('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') %>
 	  <% calendar.day(:day_method => :date_of_event) do |date, events| %>
 	    <%= date.day %>
-		<ul>
+	    <ul>
 		<% for events in events %>
-			<%= events.name %>
+			<p><%= events.name %></p>
 		<% end %>
 		</ul>
 	  <% end %>
