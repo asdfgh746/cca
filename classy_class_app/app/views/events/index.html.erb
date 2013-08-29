@@ -10,7 +10,7 @@
 	    <%= date.day %>
 	    <ul>
 		<% for events in events %>
-			<p><%= events.name %></p>
+			<p><%= link_to events.name, show_event_path(id: events.id) %></p>
 		<% end %>
 		</ul>
 	  <% end %>

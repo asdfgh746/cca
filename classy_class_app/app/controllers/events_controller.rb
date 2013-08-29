@@ -13,4 +13,8 @@ class EventsController < ApplicationController
 		@event.save
 		redirect_to :back
 	end
+
+	def show
+		@event = Event.find_by_id(params[:id])
+	end
 end
