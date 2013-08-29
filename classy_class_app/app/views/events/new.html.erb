@@ -1,0 +1,21 @@
+<div id="event_form">
+<%= form_for(@event) do |form| %>
+
+	<div class="field">
+		<%= form.label :name %>
+		<%= form.text_field :name %>
+	</div>
+
+	<div class="field">
+		<%= form.label :date_of_event %>
+		<%= form.text_field :date_of_event %>
+	</div>
+
+	<div class="field">
+		<%= form.label :description %>
+		<%= form.text_area :description %>
+	</div>
+
+	<%= form.submit "Create", class: "btn btn-large btn-primary" %>
+<% end %> 
+</div>
