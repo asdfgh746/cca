@@ -10,7 +10,6 @@ class EventsController < ApplicationController
 
 	def create
 		@event = Event.new(params[:event])
-		@event.date_of_event = Time.now
 		@event.save
 		redirect_to :back
 	end
