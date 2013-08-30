@@ -9,7 +9,7 @@ class DaysController < ApplicationController
 	def update
 		@day = Day.find_by_id(params[:id])
 		@day.update_attributes(params[:day])
-		flash[:success] = "Profile updated."
+		flash[:success] = "Day updated."
 		redirect_to :back
 	end
 end

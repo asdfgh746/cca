@@ -10,11 +10,20 @@ class EventsController < ApplicationController
 
 	def create
 		@event = Event.new(params[:event])
-		@event.save
-		redirect_to :back
+		if @event.save
+			flash[:success] = "Event added."
+			redirect_to :back
+		else
+			render 'new'
+		end
 	end
 
 	def show
-		@event = Event.find_by_id(params[:id])
+		if @event = Event.find_by_id(params[:id])
+			render 'show'
+		else
+			flash[:alert] = "Event not found."
+			redirect_to root_path
+		end
 	end
 end

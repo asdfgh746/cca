@@ -1,3 +1,4 @@
+<% provide(:title, 'Edit days') %>
 <% Day.all.each do |day| %>
 	<% @day = day %>
 	<%= form_for(@day) do |f| %>

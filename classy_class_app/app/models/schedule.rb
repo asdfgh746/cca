@@ -4,6 +4,6 @@ class Schedule < ActiveRecord::Base
   belongs_to :user
   has_many :days
 
-  validates :number_of_days, :inclusion => 1..10
-  validates :number_of_blocks, :inclusion => 1..26
+  validates :number_of_days, presence: true, allow_nil: { inclusion: 1..10 }
+  validates :number_of_blocks, presence: true, allow_nil: { inclusion: 1..26 }
 end

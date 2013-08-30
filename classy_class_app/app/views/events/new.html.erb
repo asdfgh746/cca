@@ -1,3 +1,17 @@
+<% provide(:title, 'New event') %>
+
+<% if @event.errors.full_messages.any? %>
+  <div class="alert alert-error alert-block">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <p>Oops! There appears to have been a few errors. Please fix them up before submitting again.</p>
+    <ul>
+      <% @event.errors.full_messages.each do |error_message| %>
+      <li><%= error_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div id="event_form">
 <%= form_for(@event) do |form| %>
 

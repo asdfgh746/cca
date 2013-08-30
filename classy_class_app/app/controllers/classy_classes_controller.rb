@@ -1,7 +1,7 @@
 class ClassyClassesController < ApplicationController
 
 	def new
-		render 'new'
+		@classy = ClassyClass.new
 	end
 
 	def create
@@ -14,10 +14,14 @@ class ClassyClassesController < ApplicationController
 
 		@classy = ClassyClass.create(params[:classy_class])
 		@classy.belongs_to_user = current_user.id
-		@classy.save
-
-		flash[:success] = "Schedule updated!"
-		redirect_to my_schedule_path
+		
+		if @classy.save
+			flash[:success] = "Class added"
+			redirect_to my_schedule_path
+		else
+			render 'new'
+		end
+		
 	end
 
 end

@@ -1,0 +1,24 @@
+<% provide(:title, 'New schedule') %>
+
+<% if @schedule.errors.full_messages.any? %>
+	<div class="alert alert-error alert-block">
+	  <button type="button" class="close" data-dismiss="alert">&times;</button>
+	  <p>Oops! There appears to have been a few errors. Please fix them up before submitting again.</p>
+	  <ul>
+	    <% @schedule.errors.full_messages.each do |error_message| %>
+	    <li><%= error_message %></li>
+	    <% end %>
+	  </ul>
+	</div>
+<% end %>
+
+<%= form_for @schedule do |f| %>
+
+  <%= f.label :number_of_days %>
+  <%= f.text_field :number_of_days %>
+
+  <%= f.label :number_of_blocks %>
+  <%= f.text_field :number_of_blocks %>
+
+  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+<% end %>

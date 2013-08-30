@@ -51,7 +51,10 @@ ClassyClassApp::Application.routes.draw do
   
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+
+  resources :classy_classes
   resources :days
+  resources :schedules
   resources :events
 
   root :to => 'static_pages#home'
@@ -60,16 +63,12 @@ ClassyClassApp::Application.routes.draw do
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy',     via: :delete
 
-  match '/create_new', to: 'classy_classes#new', as: :create_new
-
-  match '/create_schedule', to: "schedules#create", via: 'post'
-  match '/create_class', to: "classy_classes#create", via: 'post'
-
+  match '/add_classes', to: 'classy_classes#new', via: 'get'
+  match '/add_schedule', to: 'schedules#new', via: 'get'
   match '/my_schedule', to: 'schedules#show', via: 'get'
 
   match '/my_events', to: 'events#index', via: 'get'
   match '/add_events', to: 'events#new', via: 'get'
-
   match '/show_event/:id', to: 'events#show', as: :show_event
 
   match '/edit_days', to: 'days#edit', via: 'get'

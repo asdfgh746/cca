@@ -1,13 +1,6 @@
-<% if flash[:success] %>
-<div class="alert alert-success">
-  <%= flash[:success] %>
-</div>
-<% end %>
-
-<% @has_schedule = false %>
+<% provide(:title, 'My schedule') %>
 
 <% if @schedule = Schedule.where(belongs_to_user: current_user.id).first %>
-	<% @has_schedule = true %>
 	<div class="row">
 	<% @days = Day.where(belongs_to_schedule: @schedule.id) %>
 	<% @day_counter = 1 %>
@@ -74,17 +67,4 @@
 	<% @day_counter += 1 %>
 	<% end %>
 	</div>
-<% end %>
-
-<% if @has_schedule == false %>
-	<%= form_for :schedule, url: create_schedule_path do |f| %>
-
-	  <%= f.label :number_of_days %>
-	  <%= f.text_field :number_of_days %>
-
-	  <%= f.label :number_of_blocks %>
-	  <%= f.text_field :number_of_blocks %>
-
-	  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
-	<% end %>
 <% end %>
