@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130828172441) do
+ActiveRecord::Schema.define(:version => 20130830185213) do
 
   create_table "classy_classes", :force => true do |t|
     t.string   "name"
@@ -47,13 +47,21 @@ ActiveRecord::Schema.define(:version => 20130828172441) do
     t.integer  "number_of_blocks"
   end
 
+  create_table "schools", :force => true do |t|
+    t.string  "name"
+    t.string  "description"
+    t.integer "number_of_days"
+    t.integer "number_of_periods"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "remember_token"
+    t.integer  "belongs_to_school"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

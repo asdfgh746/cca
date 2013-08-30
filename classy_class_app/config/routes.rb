@@ -56,6 +56,7 @@ ClassyClassApp::Application.routes.draw do
   resources :days
   resources :schedules
   resources :events
+  resources :schools
 
   root :to => 'static_pages#home'
 
@@ -72,6 +73,10 @@ ClassyClassApp::Application.routes.draw do
   match '/show_event/:id', to: 'events#show', as: :show_event
 
   match '/edit_days', to: 'days#edit', via: 'get'
+
+  match '/set_school', to: 'schools#index', via: 'get'
+
+  match '/set_schedule_with_school', to: 'schools#set_schedule_with_school', as: :set_schedule_with_school
 
   # See how all your routes lay out with "rake routes"
 
