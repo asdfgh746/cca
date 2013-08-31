@@ -1,4 +1,33 @@
 class SchoolsController < ApplicationController
+	
+	def new
+		@school = School.new
+	end
+
+	def create
+		@school = School.new(params[:school])
+
+		@counter = 1
+		@alphabet = ("A".."Z").to_a
+
+		if @school.save
+
+			while @counter <= @school.number_of_days
+				@day = Day.new
+				@day.order_of_blocks = @alphabet[0..@school.number_of_periods-1].join(",")
+				@day.number = @counter
+				@day.belongs_to_school = @school.id
+				@day.save
+				@counter += 1
+			end
+
+			flash[:success] = "School added."
+			redirect_to add_days_path(@school.id)
+		else
+			render 'new'
+		end
+	end
+
 	def index
 		@schools = School.all
 		@schools_for_form ||= []

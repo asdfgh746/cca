@@ -5,6 +5,7 @@
       <ul class="nav pull-right">
         <li><%= link_to "Home", root_path %></li>
         <% if signed_in? %>
+          <li><%= link_to "Add School", add_schools_path%></li>
           <li><%= link_to "Events", my_events_path %></li>
           <li><%= link_to "Add Events", add_events_path %></li>
           <% if @schedule = Schedule.where(belongs_to_user: current_user.id).first %>

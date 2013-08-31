@@ -1,0 +1,16 @@
+<% provide(:title, 'Add days') %>
+
+<% @days.each do |day| %>
+	<%= form_for(day) do |f| %>
+
+		<% @array_data = day.order_of_blocks.split(",").collect %>
+		<table>
+			<tr><th>Day <%= day.number %></th><tr>
+			<tr><td>
+				<%= f.text_field :order_of_blocks %>
+				<%= f.submit "Save changes", class: "btn btn-primary" %>
+			</td></tr>
+		</table>
+
+	<% end %>
+<% end %>

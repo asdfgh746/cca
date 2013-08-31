@@ -77,6 +77,9 @@ ClassyClassApp::Application.routes.draw do
   match '/set_school', to: 'schools#index', via: 'get'
 
   match '/set_schedule_with_school', to: 'schools#set_schedule_with_school', as: :set_schedule_with_school
+  match 'add_schools', to: 'schools#new', via: 'get'
+
+  match '/add_days/:id', to: 'days#new', as: :add_days
 
   # See how all your routes lay out with "rake routes"
 
