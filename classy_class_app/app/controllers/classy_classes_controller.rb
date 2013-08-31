@@ -16,7 +16,7 @@ class ClassyClassesController < ApplicationController
 		@classy.belongs_to_user = current_user.id
 		
 		if @classy.save
-			flash[:success] = "Class added"
+			flash[:success] = "Class added. <a href='#{url_for(add_classes_path)}'>Add another?</a>".html_safe
 			redirect_to my_schedule_path
 		else
 			render 'new'
