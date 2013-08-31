@@ -18,15 +18,16 @@ class SchoolsController < ApplicationController
 		@schedule.number_of_days = @school.number_of_days
 		@schedule.number_of_blocks = @school.number_of_periods
 
-		@counter = 1
+		@counter = 0
 		@alphabet = ("A".."Z").to_a
 
 		if @schedule.save
+			@school_days = Day.where(belongs_to_school: @school.id)
 
-			while @counter <= @schedule.number_of_days
+			while @counter <= @school_days.count - 1
 				@day = Day.new
-				@day.order_of_blocks = @alphabet[0..@schedule.number_of_blocks-1].join(",")
-				@day.number = @counter
+				@day.order_of_blocks = @school_days[@counter].order_of_blocks
+				@day.number = @counter + 1
 				@day.belongs_to_schedule = @schedule.id
 				@day.save
 				@counter += 1

@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 		if @user.save	  		
 	  		sign_in @user
 	  		flash[:success] = "Welcome to CCA!"
-	  		redirect_to my_schedule_path
+	  		redirect_to set_school_path
 		else
 	  		render 'new'
 		end
