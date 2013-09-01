@@ -13,6 +13,7 @@ class ClassyClassesController < ApplicationController
 		end
 
 		@classy = ClassyClass.create(params[:classy_class])
+		@classy.duration = 60
 		@classy.belongs_to_user = current_user.id
 		
 		if @classy.save
