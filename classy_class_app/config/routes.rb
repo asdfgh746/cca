@@ -64,16 +64,12 @@ ClassyClassApp::Application.routes.draw do
   match '/sign_out', to: 'sessions#destroy',     via: :delete
 
   match '/add_classes', to: 'classy_classes#new', via: 'get'
-  match '/add_schedule', to: 'schedules#new', via: 'get'
   match '/my_schedule', to: 'schedules#show', via: 'get'
 
   match '/my_events', to: 'events#index', via: 'get'
   match '/add_events', to: 'events#new', via: 'get'
-  match '/show_event/:id', to: 'events#show', as: :show_event
 
   match '/edit_days', to: 'days#edit', via: 'get'
-
-  match '/set_school', to: 'schools#index', via: 'get'
 
   match '/set_schedule_with_school', to: 'schools#set_schedule_with_school', as: :set_schedule_with_school
   match 'add_schools', to: 'schools#new', via: 'get'
