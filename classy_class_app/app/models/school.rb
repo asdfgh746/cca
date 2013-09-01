@@ -1,5 +1,5 @@
 class School < ActiveRecord::Base
-	attr_accessible :name, :description, :number_of_days, :number_of_periods
+	attr_accessible :name, :description, :number_of_days, :number_of_periods, :start_time, :buffer_time
 
 	has_many :users
 	has_many :days

@@ -7,7 +7,7 @@
 
 	<% @days.each do |day| %>
 	<% @previous_class = 0 %>
-	<% @start_time = Time.local(2013,"jan",1,8,15,1) %>
+	<% @start_time = @schedule.start_time %>
 		<% if day.order_of_blocks %>
 			<% @number_of_blocks = day.order_of_blocks.split(",").collect.count %>
 
@@ -45,7 +45,7 @@
 							<% if current_class.belongs_to_user == current_user.id %>
 								<% @previous_class %>
 								<% if @previous_class != 0 %>
-									<% @start_time += @previous_class * 60 %>
+									<% @start_time += (@previous_class + @schedule.buffer_time) * 60 %>
 									<% @previous_class = current_class.duration %>
 								<% else %>
 									<% @previous_class = current_class.duration %>

@@ -1,5 +1,5 @@
 class Schedule < ActiveRecord::Base
-  attr_accessible :number_of_days, :belongs_to_user, :number_of_blocks
+  attr_accessible :number_of_days, :belongs_to_user, :number_of_blocks, :start_time, :buffer_time
   
   belongs_to :user
   has_many :days
