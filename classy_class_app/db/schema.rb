@@ -11,40 +11,58 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130717224332) do
+ActiveRecord::Schema.define(:version => 20130901131559) do
 
   create_table "classy_classes", :force => true do |t|
     t.string   "name"
     t.string   "teacher"
     t.integer  "duration"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "belongs_to_day"
     t.integer  "belongs_to_user"
+    t.string   "block"
+    t.integer  "classroom_number"
   end
 
   create_table "days", :force => true do |t|
     t.integer  "number"
-    t.integer  "number_of_classes"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.integer  "belongs_to_schedule"
+    t.string   "order_of_blocks"
+    t.integer  "belongs_to_school"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "date_of_event"
   end
 
   create_table "schedules", :force => true do |t|
     t.integer  "number_of_days"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "belongs_to_user"
+    t.integer  "number_of_blocks"
+  end
+
+  create_table "schools", :force => true do |t|
+    t.string  "name"
+    t.string  "description"
+    t.integer "number_of_days"
+    t.integer "number_of_periods"
   end
 
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "remember_token"
+    t.integer  "belongs_to_school"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

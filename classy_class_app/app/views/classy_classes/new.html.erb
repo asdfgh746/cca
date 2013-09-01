@@ -1,5 +1,18 @@
+<% provide(:title, 'New class') %>
 
-<%= form_for :classy_class, url: create_class_path do |f| %>
+<% if @classy.errors.full_messages.any? %>
+  <div class="alert alert-error alert-block">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <p>Oops! There appears to have been a few errors. Please fix them up before submitting again.</p>
+    <ul>
+      <% @classy.errors.full_messages.each do |error_message| %>
+      <li><%= error_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @classy do |f| %>
 
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -7,16 +20,43 @@
   <%= f.label :teacher %>
   <%= f.text_field :teacher %>
 
-  <%= f.label :duration %>
-  <%= f.text_field :duration %>
+  <%= f.label :classroom_number %>
+  <%= f.text_field :classroom_number %>
 
-	<% if @schedule = Schedule.where(belongs_to_user: current_user.id).first %>
-	<% @days = Day.where(belongs_to_schedule: @schedule.id) %>
-	
-    <%= f.label :belongs_to_day, "Day" %>
-		<%= collection_select(:classy_class, :belongs_to_day, @days, :id, :number) %>
+  <% if @schedule = Schedule.where(belongs_to_user: current_user.id).first %>
 
-	<% end %>
+    <% @days = Day.where(belongs_to_schedule: @schedule.id) %>
+
+    <% @blocks = [] %>
+    
+    <% @ok = false %>
+    <% @days.each do |day| %>
+      <% if day.order_of_blocks %>
+        <% @blocks_for_day = day.order_of_blocks.split(",").collect %>
+        <% @ok = true %>
+        <% @blocks_for_day.each do |block| %>
+          <% @blocks << block %>
+        <% end %> 
+      <% end %>
+    <% end %>
+    
+    <% if @ok == false %>
+      <% @blocks = ["A", "B", "C", "D", "E"] %>
+    <% end %>
+
+    <% @blocks = @blocks.uniq %>
+    <% @blocks.sort_by!{ |m| m } %>
+
+    <% @blocks_for_form = [] %>
+    <% @blocks.each do |block| %>
+      <% @dupe = [block, block] %>
+      <% @blocks_for_form << @dupe %> 
+    <% end %>
+
+    <%= f.label :block, "Block" %>
+    <%= f.select :block, options_for_select(@blocks_for_form) %>
+
+  <% end %>
 
   <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 <% end %>

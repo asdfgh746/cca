@@ -1,0 +1,8 @@
+<% provide(:title, @event.name) %>
+<div id="event">
+	<h2><%= @event.name %></h2>
+	<p><%= @event.date_of_event.year %>-<%= @event.date_of_event.month %>-<%= @event.date_of_event.day %></p>
+	<div id="event_description">
+		<p><%= @event.description %></p>
+	</div>
+</div>

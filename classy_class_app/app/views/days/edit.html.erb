@@ -1,0 +1,20 @@
+<% provide(:title, 'Edit days') %>
+<% Day.all.each do |day| %>
+	<% @day = day %>
+	<%= form_for(@day) do |f| %>
+		<% if @schedule = Schedule.find_by_id(day.belongs_to_schedule) %>
+			<% if @schedule.belongs_to_user == current_user.id %>
+				<% @array_data = day.order_of_blocks.split(",").collect %>
+				<table>
+					<tr><th>Day <%= day.number %></th><tr>
+					<tr><td>
+						<% @day = day %>
+						<%= f.text_field :order_of_blocks %>
+						<%= f.submit "Save changes", class: "btn btn-primary" %>
+					</td></tr>
+				</table>
+			<% end %>
+		<% end %>
+
+	<% end %>
+<% end %>
