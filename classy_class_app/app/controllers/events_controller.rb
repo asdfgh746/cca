@@ -12,7 +12,7 @@ class EventsController < ApplicationController
 		@event = Event.new(params[:event])
 		if @event.save
 			flash[:success] = "Event added."
-			redirect_to :back
+			redirect_to events_path
 		else
 			render 'new'
 		end
@@ -23,7 +23,7 @@ class EventsController < ApplicationController
 			render 'show'
 		else
 			flash[:alert] = "Event not found."
-			redirect_to root_path
+			redirect_to events_path
 		end
 	end
 end
