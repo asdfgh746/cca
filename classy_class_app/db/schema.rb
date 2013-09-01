@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130901131559) do
+ActiveRecord::Schema.define(:version => 20130901154149) do
 
   create_table "classy_classes", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20130901131559) do
     t.string   "name"
     t.string   "description"
     t.datetime "date_of_event"
+    t.integer  "belongs_to_user"
   end
 
   create_table "schedules", :force => true do |t|
