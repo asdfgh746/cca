@@ -5,7 +5,9 @@ class School < ActiveRecord::Base
 	has_many :days
 	has_one :schedule
 
-	validates :name, presence: true
+	validates :name, presence: true, uniqueness: true
 	validates :number_of_days, presence: true, allow_nil: { inclusion: 1..10 }
 	validates :number_of_periods, presence: true, allow_nil: { inclusion: 1..26 }
+	validates :start_time, presence: true
+	validates :buffer_time, presence: true
 end
