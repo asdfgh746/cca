@@ -71,7 +71,7 @@ ClassyClassApp::Application.routes.draw do
 
   match '/edit_days', to: 'days#edit', via: 'get'
 
-  match '/set_schedule_with_school', to: 'schools#set_schedule_with_school', as: :set_schedule_with_school
+  match '/schools/set', to: 'schools#set', as: :set_school, via: 'post'
   match 'add_schools', to: 'schools#new', via: 'get'
 
   match '/add_days/:id', to: 'days#new', as: :add_days
