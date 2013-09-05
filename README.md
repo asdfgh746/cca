@@ -14,7 +14,7 @@ This project uses Ruby 1.9.3 and Rails 3.2. Check out the Gemfile for more speci
 Love,  
 Lucas, Edward, and John
 
-*Note:* The project name is still a work in progress. If you'd like to suggest something better, we're all ears. :smile:
+*Note:* The project name is still a work in progress. If you'd like to suggest something better, we're all ears. :smile: Timetabulous sounds good.
 
 ## Team
 
