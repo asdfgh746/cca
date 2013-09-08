@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 		sign_in current_user
 
 		flash[:success] = "School updated."
-		redirect_to set_schedule_with_school_path
+		redirect_to set_school_path
 	end
 
 	def create
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 		if @user.save	  		
 	  		sign_in @user
 	  		flash[:success] = "Welcome to CCA!"
-	  		redirect_to set_school_path
+	  		redirect_to schools_path
 		else
 	  		render 'new'
 		end

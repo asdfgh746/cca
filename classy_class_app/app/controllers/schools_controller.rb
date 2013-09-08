@@ -39,7 +39,7 @@ class SchoolsController < ApplicationController
 		@user = current_user
 	end
 
-	def set_schedule_with_school
+	def set
 		@school = School.find_by_id(current_user.belongs_to_school)
 
 		@schedule = Schedule.new

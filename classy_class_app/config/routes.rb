@@ -50,6 +50,7 @@ ClassyClassApp::Application.routes.draw do
   # just remember to delete public/index.html.
   
   resources :users
+  resources :schedules
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :classy_classes
@@ -60,23 +61,17 @@ ClassyClassApp::Application.routes.draw do
 
   root :to => 'static_pages#home'
 
-  match '/signup', to: 'users#new', via: 'get'
-  match '/signin', to: 'sessions#new', via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: :delete
+  match '/sign_out', to: 'sessions#destroy',     via: :delete
 
   match '/add_classes', to: 'classy_classes#new', via: 'get'
-  match '/add_schedule', to: 'schedules#new', via: 'get'
   match '/my_schedule', to: 'schedules#show', via: 'get'
 
   match '/my_events', to: 'events#index', via: 'get'
   match '/add_events', to: 'events#new', via: 'get'
-  match '/show_event/:id', to: 'events#show', as: :show_event
 
   match '/edit_days', to: 'days#edit', via: 'get'
 
-  match '/set_school', to: 'schools#index', via: 'get'
-
-  match '/set_schedule_with_school', to: 'schools#set_schedule_with_school', as: :set_schedule_with_school
+  match '/schools/set', to: 'schools#set', as: :set_school, via: 'post'
   match 'add_schools', to: 'schools#new', via: 'get'
 
   match '/add_days/:id', to: 'days#new', as: :add_days
