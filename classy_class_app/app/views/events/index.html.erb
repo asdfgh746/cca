@@ -1,5 +1,5 @@
 <% provide(:title, 'Events') %>
-<% @weekend_count = 0 %>
+<% @exception_count = 0 %>
 <div id="calendar">
 	<h2 id="month">
 	    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-01") %>
@@ -13,18 +13,23 @@
 
 	    <% @start_date = Date.parse('3-9-2013') %>
 
-	    <% if date.wday == 5 || date.wday == 6 %>
-	    	<% @weekend_count += 1 %>
-	    <% end %>
-
-	    <% if date.wday != 5 && date.wday != 6 %>
-		    <% @dur = (date - @start_date).to_i %>
-			<ul><p>Day <%= 1 + (@dur - @weekend_count) % 5 %></p></ul>
+	   	<% if date.wday == 5 || date.wday == 6 %>
+	    	<% @exception_count += 1 %>
+	    <% else %>
+		    <% Event.where(exception_day: true).each do |exc| %>
+		    	<% if exc.date_of_event.year == date.year && exc.date_of_event.month == date.month && exc.date_of_event.day == date.day %>
+		    		<% @exception_count += 1 %>
+		    		<ul><p>Day 0</p></ul>
+		    	<% else %>
+		    	<% @dur = (date - @start_date).to_i %>
+				<ul><p>Day <%= 1 + (@dur - @exception_count) % 5 %></p></ul>
+			<% end %>
+		    <% end %>
 		<% end %>
 
 	    <ul>
 		<% for events in events %>
-			<% if events.belongs_to_user == current_user.id %>
+			<% if events.belongs_to_user == current_user.id && events.exception_day == false %>
 				<p><%= link_to events.name, show_event_path(id: events.id) %></p>
 			<% end %>
 		<% end %>
