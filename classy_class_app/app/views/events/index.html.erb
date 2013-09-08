@@ -1,4 +1,5 @@
 <% provide(:title, 'Events') %>
+<% @weekend_count = 0 %>
 <div id="calendar">
 	<h2 id="month">
 	    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-01") %>
@@ -9,6 +10,18 @@
 	  <%= calendar.head('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') %>
 	  <% calendar.day(:day_method => :date_of_event) do |date, events| %>
 	    <%= date.day %>
+
+	    <% @start_date = Date.parse('3-9-2013') %>
+
+	    <% if date.wday == 5 || date.wday == 6 %>
+	    	<% @weekend_count += 1 %>
+	    <% end %>
+
+	    <% if date.wday != 5 && date.wday != 6 %>
+		    <% @dur = (date - @start_date).to_i %>
+			<ul><p>Day <%= 1 + (@dur - @weekend_count) % 5 %></p></ul>
+		<% end %>
+
 	    <ul>
 		<% for events in events %>
 			<% if events.belongs_to_user == current_user.id %>
