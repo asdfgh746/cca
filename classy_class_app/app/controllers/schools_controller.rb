@@ -46,6 +46,8 @@ class SchoolsController < ApplicationController
 		@schedule.belongs_to_user = current_user.id
 		@schedule.number_of_days = @school.number_of_days
 		@schedule.number_of_blocks = @school.number_of_periods
+		@schedule.start_time = @school.start_time
+		@schedule.buffer_time = @school.buffer_time
 
 		@counter = 0
 		@alphabet = ("A".."Z").to_a
