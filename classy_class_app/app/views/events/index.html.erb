@@ -11,7 +11,7 @@
 	  <% calendar.day(:day_method => :date_of_event) do |date, events| %>
 	    <%= date.day %>
 
-	    <% @start_date = Date.parse('3-9-2013') %>
+	    <% @start_date = Date.parse('2-9-2013') %>
 
 	   	<% if date.wday == 5 || date.wday == 6 %>
 	    	<% @exception_count += 1 %>
