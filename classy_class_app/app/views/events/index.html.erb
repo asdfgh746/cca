@@ -11,20 +11,35 @@
 	  <% calendar.day(:day_method => :date_of_event) do |date, events| %>
 	    <%= date.day %>
 
-	    <% @start_date = Date.parse('2-9-2013') %>
+	    <% @exc_days = [] %>
+	    <% @start_date = Date.parse('2013-09-02') %>
 
-	   	<% if date.wday == 5 || date.wday == 6 %>
-	    	<% @exception_count += 1 %>
-	    <% else %>
-		    <% Event.where(exception_day: true).each do |exc| %>
-		    	<% if exc.date_of_event.year == date.year && exc.date_of_event.month == date.month && exc.date_of_event.day == date.day %>
-		    		<% @exception_count += 1 %>
-		    		<ul><p>Day 0</p></ul>
-		    	<% else %>
-		    	<% @dur = (date - @start_date).to_i %>
-				<ul><p>Day <%= 1 + (@dur - @exception_count) % 5 %></p></ul>
-			<% end %>
+	    <% if date >= @start_date %>
+	    <% @duration = (@start_date..date).select {|d| (1..5).include?(d.wday)}.size - 1 %>
+	    <% (@start_date..date).each do |dts| %>
+		    <% Event.where(exception_day: true).each do |excday| %>
+		    	<% if excday.date_of_event.year == dts.year && excday.date_of_event.month == dts.month && excday.date_of_event.day == dts.day %>
+		    		<% @exc_days << dts %>
+		    	<% end %>
 		    <% end %>
+	    <% end %>
+
+	    <% if (0..4).include?(date.wday) %>
+	    	<% @excday = false %>
+	    	<% Event.where(exception_day: true).each do |exc| %>
+	    		<% if exc.date_of_event.year == date.year && exc.date_of_event.month == date.month && exc.date_of_event.day == date.day %>
+	    			<ul><p>Day 0</p></ul>
+	    			<% @excday = true %>
+	    		<% end %>
+	    	<% end %>
+	    	<% if @excday == false %>
+
+	    		<ul><p>Day <%= 1 + (@duration - @exc_days.count) % 5 %></p></ul>
+	    	<% end %>
+	    <% end %>
+
+		<% else %>
+			<ul><p>Day 0</p></ul>
 		<% end %>
 
 	    <ul>
