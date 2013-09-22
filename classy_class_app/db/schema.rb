@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130921160205) do
+ActiveRecord::Schema.define(:version => 20130922153031) do
 
   create_table "classy_classes", :force => true do |t|
     t.string   "name"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20130921160205) do
     t.integer  "belongs_to_day"
     t.integer  "belongs_to_user"
     t.string   "block"
-    t.integer  "classroom_number"
+    t.string   "classroom_number"
   end
 
   create_table "days", :force => true do |t|
