@@ -12,6 +12,13 @@
   </div>
 <% end %>
 
+<% @schools_for_form ||= [] %>
+<% @schools_for_form << "" %>
+
+<% School.all.each do |school| %>
+	<% @schools_for_form << school.name %>
+<% end %>
+
 <div id="event_form">
 <%= form_for(@event) do |form| %>
 
@@ -28,6 +35,16 @@
 	<div class="field">
 		<%= form.label :description %>
 		<%= form.text_area :description %>
+	</div>
+
+	<div class="field">
+		<%= form.label :exception_day %>
+		<%= form.check_box :exception_day %>
+	</div>
+
+	<div class="field">
+		<%= form.label :belongs_to_school %>
+		<%= form.select :belongs_to_school, options_for_select(@schools_for_form) %>
 	</div>
 
 	<%= form.submit "Create", class: "btn btn-large btn-primary" %>

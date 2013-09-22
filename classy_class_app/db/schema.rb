@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130908190721) do
+ActiveRecord::Schema.define(:version => 20130921160205) do
 
   create_table "classy_classes", :force => true do |t|
     t.string   "name"
@@ -39,7 +39,8 @@ ActiveRecord::Schema.define(:version => 20130908190721) do
     t.string   "description"
     t.datetime "date_of_event"
     t.integer  "belongs_to_user"
-    t.boolean  "exception_day",   :default => false
+    t.boolean  "exception_day",     :default => false
+    t.integer  "belongs_to_school"
   end
 
   create_table "schedules", :force => true do |t|

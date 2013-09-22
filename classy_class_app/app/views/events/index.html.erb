@@ -44,7 +44,7 @@
 
 	    <ul>
 		<% for events in events %>
-			<% if events.belongs_to_user == current_user.id && events.exception_day == false %>
+			<% if (events.belongs_to_user == current_user.id || events.belongs_to_school == current_user.belongs_to_school) && events.exception_day == false %>
 				<p><%= link_to events.name, show_event_path(id: events.id) %></p>
 			<% end %>
 		<% end %>

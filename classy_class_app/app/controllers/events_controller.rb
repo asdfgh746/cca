@@ -11,7 +11,15 @@ class EventsController < ApplicationController
 
 	def create
 		@event = Event.new(params[:event])
-		@event.belongs_to_user = current_user.id
+
+		if @event.belongs_to_school == nil
+			@event.belongs_to_user = current_user.id
+		else
+			@school_name = params[:event]['belongs_to_school']
+			@school = School.where(name: @school_name).first
+			@event.belongs_to_school = @school.id
+		end
+
 		if @event.save
 			flash[:success] = "Event added."
 			redirect_to events_path
